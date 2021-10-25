@@ -40,6 +40,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/update', 'MemberBaruController@update');
         Route::get('/approve/{id}', 'MemberBaruController@approve');
         Route::get('/reject/{id}', 'MemberBaruController@reject');
+        Route::get('/detail/{id}', 'MemberBaruController@detail');
+
+
+        Route::get('/email', 'MemberBaruController@email');
     });
 
 

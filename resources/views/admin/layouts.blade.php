@@ -160,6 +160,9 @@
 <!-- DataTables -->
 <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+@yield('js')
+
 <!-- SlimScroll -->
 <script src="/assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->

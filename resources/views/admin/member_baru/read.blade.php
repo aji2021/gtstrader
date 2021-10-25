@@ -1,34 +1,10 @@
 @extends('admin.layouts')
 
 @section('content')
-    <div id="myModal" class="modal fade" role="dialog">
+    <div  class="modal fade" id="modalMd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-info">
             <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Detail Member</h4>
-              </div>
-              <div class="modal-body">
-                <h4 class="modal-title">Data Diri </h4>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Nama : </label>
-                    <p>tes</p>
-                </div>
-                <h4 class="modal-title">Akun Treding </h4>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Nama : </label>
-                    <p>tes</p>
-                </div>
-                <h4 class="modal-title">Data Bank </h4>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Nama : </label>
-                    <p>tes</p>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
+                <div id="modalMdContent"></div>
             </div>
         </div>
     </div>
@@ -60,9 +36,11 @@
                                     <td>{{ $data->nik_ktp }}</td>
                                     <td>{{ $data->username }}</td>
                                     <td>
-                                        <a href="/admin/member_baru/detail" class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal">
+                                        <a href="/admin/member_baru/detail/{{$data->id}}" class="btn btn-info btn-flat modalMd" data-toggle="modal" data-target="#modalMd">
                                             Detail
                                         </a>
+
+
                                         <a href="/admin/member_baru/approve/{{$data->id}}" class="btn btn-success btn-flat">
                                             Approve
                                         </a>
@@ -79,4 +57,16 @@
             </div>
         </div>
     </section>
+@endsection
+
+
+@section('js')
+    <script type="text/javascript">
+        $(document).on('ajaxComplete ready', function () {
+            $('.modalMd').off('click').on('click', function () {
+                $('#modalMdContent').load($(this).attr('value'));
+                $('#modalMdTitle').html($(this).attr('title'));
+            });
+        });
+    </script>
 @endsection
